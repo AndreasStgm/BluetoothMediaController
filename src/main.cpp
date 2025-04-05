@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <BleKeyboard.h>
 
-BleKeyboard keyboardInstance;
+BleKeyboard keyboardInstance("BLEMediaControl");
 
 const uint8_t BUTTON_1 = 34;
 const uint8_t BUTTON_2 = 35;
@@ -30,7 +30,6 @@ void loop()
     if (keyboardInstance.isConnected())
     {
         // Turn off the LEDs when connected
-        delayCounter = 0;
         digitalWrite(BUTTON_1_LED, LOW);
         digitalWrite(BUTTON_2_LED, LOW);
 
@@ -41,13 +40,23 @@ void loop()
         // keyboardInstance.write(KEY_MEDIA_PREVIOUS_TRACK);
         // keyboardInstance.write(KEY_MEDIA_VOLUME_UP);
         // keyboardInstance.write(KEY_MEDIA_VOLUME_DOWN);
+        if (delayCounter >= 15000)
+        {
+            delayCounter = 0;
+            // Flash the LEDs every 15 seconds to indicate that the device is powered
+            digitalWrite(BUTTON_1_LED, HIGH);
+            digitalWrite(BUTTON_2_LED, HIGH);
+            delay(100);
+            digitalWrite(BUTTON_1_LED, LOW);
+            digitalWrite(BUTTON_2_LED, LOW);
+        }
     }
     else
     {
         if (delayCounter >= 1000)
         {
-            // Flash the LEDs on and off every second to indicate unconnected state
             delayCounter = 0;
+            // Flash the LEDs on and off every second to indicate unconnected state
             digitalWrite(BUTTON_1_LED, !digitalRead(BUTTON_1_LED));
             digitalWrite(BUTTON_2_LED, !digitalRead(BUTTON_2_LED));
         }
