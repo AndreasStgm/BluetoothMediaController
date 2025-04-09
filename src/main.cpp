@@ -96,14 +96,14 @@ void button2StateChangeISR()
 void setup()
 {
     // Configuring the pins as in- and outputs
-    pinMode(BUTTON_1, INPUT_PULLUP);
-    pinMode(BUTTON_2, INPUT_PULLUP);
+    pinMode(BUTTON_1, INPUT);
+    pinMode(BUTTON_2, INPUT);
     pinMode(BUTTON_1_LED, OUTPUT);
     pinMode(BUTTON_2_LED, OUTPUT);
 
     // Configure the interrupts for the buttons
-    // attachInterrupt(digitalPinToInterrupt(BUTTON_1), button1StateChangeISR, CHANGE);
-    // attachInterrupt(digitalPinToInterrupt(BUTTON_2), button2StateChangeISR, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(BUTTON_1), button1StateChangeISR, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(BUTTON_2), button2StateChangeISR, CHANGE);
 
     // Starting the BLE keyboard instance
     keyboardInstance.begin();
@@ -120,11 +120,17 @@ void loop()
         // Send the corresponding command if one of the buttons has been pressed
         if (currentDeviceState == DeviceState::SEND_COMMAND_1)
         {
+            // Send the command
             keyboardInstance.write(BUTTON_1_COMMAND);
+            // Set the devices state back to waiting for a press
+            currentDeviceState = DeviceState::WAITING;
         }
         else if (currentDeviceState == DeviceState::SEND_COMMAND_2)
         {
+            // Send the command
             keyboardInstance.write(BUTTON_2_COMMAND);
+            // Set the devices state back to waiting for a press
+            currentDeviceState = DeviceState::WAITING;
         }
 
         if (delayCounter >= 15000)
