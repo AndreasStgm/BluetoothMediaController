@@ -9,7 +9,7 @@ BleKeyboard keyboardInstance("BLEMediaControl");
 //     - KEY_MEDIA_PREVIOUS_TRACK
 //     - KEY_MEDIA_VOLUME_UP
 //     - KEY_MEDIA_VOLUME_DOWN
-const uint8_t *BUTTON_1_COMMAND = KEY_MEDIA_PREVIOUS_TRACK;
+const uint8_t *BUTTON_1_COMMAND = KEY_MEDIA_PLAY_PAUSE;
 const uint8_t *BUTTON_2_COMMAND = KEY_MEDIA_NEXT_TRACK;
 
 enum DeviceState

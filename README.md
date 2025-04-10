@@ -1,8 +1,34 @@
 # Bluetooth Media Controller
 
-Uses the [BLEKeyboard library](https://github.com/T-vK/ESP32-BLE-Keyboard).
+This project uses the [BLEKeyboard library](https://github.com/T-vK/ESP32-BLE-Keyboard) as a way to connect to a music player and control its media playback.
+It is designed for people who have impaired vision.
 
-# Bill Of Materials (BOM):
+## LED status indicators
+
+The buttons will light up in different ways to indicate different statuses of the device.
+
+1. Both buttons flashing on and off every second
+   - This indicates that the device is powered on, but not connected to any device over bluetooth. It should be actively advertising itself to nearby bluetooth devices.
+2. Both buttons flash shortly every 15 seconds
+   - This indicates that the device is powered on AND correctly connected to a device over bluetooth. The device is powered on and working correctly.
+3. Both buttons are off permanently
+   - The device is powered off.
+
+## Modifying button functions
+
+This project is built using [PlatformIO](https://platformio.org/).
+To modify or upload new versions to the device the [VSCode](https://code.visualstudio.com/) and the [PlatformIO Extension](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide) must be installed.
+
+The functions that the buttons perform can be modified in the constants at the top of the ´main.cpp´-file.
+The following options are available through the keyboard library:
+
+- ´KEY_MEDIA_PLAY_PAUSE´
+- ´KEY_MEDIA_NEXT_TRACK´
+- ´KEY_MEDIA_PREVIOUS_TRACK´
+- ´KEY_MEDIA_VOLUME_UP´
+- ´KEY_MEDIA_VOLUME_DOWN´
+
+## Bill Of Materials (BOM):
 
 |               Item               | Unit Cost |    Amount     |   Total Cost    |                                      Link                                      |
 | :------------------------------: | :-------: | :-----------: | :-------------: | :----------------------------------------------------------------------------: |
