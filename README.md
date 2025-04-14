@@ -3,6 +3,19 @@
 This project uses the [BLEKeyboard library](https://github.com/T-vK/ESP32-BLE-Keyboard) as a way to connect to a music player and control its media playback.
 It is designed for people who have impaired vision.
 
+![Outside view of the device](./images/Controller_Outside.jpg "Outside view of the device")
+![Inside view of the device, with the powerbank at the bottom](./images/Controller_Inside_Powerbank.jpg "Inside view of the device")
+
+## Usage
+
+The device can be powered on using the switch on the right side of the device.
+The device is powered on when this switch is in the `up` position.
+The bluetooth name of the device is: `BLEMediaControl`.
+Navigate to the bluetooth section of your device and pair with the controller.
+The first pairing can sometimes be finnicky, just try to reconnect after the first time and the device should remain connected.
+
+By default the **LEFT** button will **play/pause** the media and the **RIGHT** button will skip to the next track.
+
 ## LED status indicators
 
 The buttons will light up in different ways to indicate different statuses of the device.
